@@ -1,0 +1,178 @@
+<!DOCTYPE html>
+<html lang="sv">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Mat och Dryck</title>
+    <link rel="stylesheet" href="../css/style.css" />
+    <link rel="stylesheet" href="../css/mat_och_dryck.css">
+
+    <link rel="icon" type="image/png" sizes="32x32" href="/vara_hotell/img/original/icon.png">
+
+    <meta name="description"
+        content="Njut av lokalproducerade smaker i Vara Hotells restaurang och bar. Upptäck vår à la carte, avsmakningsmenyer och utvalt vin- & öl-sortiment." />
+</head>
+
+<body>
+    <!-- Navbar -->
+    <header>
+        <nav>
+            <!-- lower nav -->
+            <div id="lower_nav">
+                <ul id="lower_nav_list" class="hidden">
+                    <!-- list items -->
+                    <li id=lower_nav_logo>
+                        <a href="/vara_hotell/index.html" class="logo_link">
+                            <img src="/vara_hotell/img/original/logga.png" alt="vara">
+                            <p id="hotell_text">HOTELL</p>
+                        </a>
+
+                        <button id="hamburger_toggle" onclick="hamburger_toggle()">&#9776;</button>
+                    </li>
+
+                    <li class="nav_link">
+                        <a class="lower_nav_a" href="/vara_hotell/html/boka.html">BOKA</a>
+                    </li>
+                    <li class="nav_link">
+                        <a class="lower_nav_a" href="/vara_hotell/html/upplevelser.html">UPPLEVELSER</a>
+                    </li>
+                    <li class="nav_link">
+                        <a class="lower_nav_a" href="/vara_hotell/html/mat_och_dryck.html">MAT OCH DRYCK</a>
+                    </li>
+                    <li class="nav_link">
+                        <a class="lower_nav_a" href="/vara_hotell/html/hitta.html">HITTA</a>
+                    </li>
+                    <li class="nav_link">
+                        <a class="lower_nav_a" href="/vara_hotell/html/om_oss.html">OM OSS</a>
+                    </li>
+                    <li class="nav_link">
+                        <a class="lower_nav_a" href="/vara_hotell/html/kontakta_oss.html">KONTAKTA</a>
+                    </li>
+                </ul>
+            </div>
+        </nav>
+    </header>
+
+    <!--Hero-->
+    <div class="hero">
+        <img src="../img/original/mat_och_dryck.avif" alt="restaurang">
+        <div class="hero_title">Vår Meny</div>
+    </div>
+
+    <!--Menu-->
+    <div class="menu_wrapper">
+        <div class="menu_block">
+            <h2>Förrätter</h2>
+            <ul>
+                <li>Toast Skagen - 129 kr</li>
+                <li>Säsongens grönsakssoppa - 109 kr</li>
+                <li>Vitlöksbröd med parmesan - 95 kr</li>
+            </ul>
+        </div>
+
+        <div class="menu_block">
+            <h2>Huvudrätter</h2>
+            <ul>
+                <li>Grillad entrecôte med rödvinssås - 259 kr</li>
+                <li>Ugnsbakad torsk med dillsås - 229 kr</li>
+                <li>Vegansk lasagne - 199 kr</li>
+            </ul>
+        </div>
+
+        <div class="menu_block">
+            <h2>Desserter</h2>
+            <ul>
+                <li>Chokladfondant med vaniljglass - 99 kr</li>
+                <li>Pannacotta med bär - 89 kr</li>
+                <li>Citrontarte med maräng - 95 kr</li>
+            </ul>
+        </div>
+
+        <div class="menu_block">
+            <h2>Drycker</h2>
+            <ul>
+                <li>Lokal öl - 69 kr</li>
+                <li>Husets vin - 85 kr/glas</li>
+                <li>Alkoholfritt - 39 kr</li>
+            </ul>
+        </div>
+    </div>
+    <!-- Footer -->
+    <footer class="footer">
+        <div class="footer_container">
+
+            <!-- Logo -->
+            <div class="footer_section">
+                <div class="footer_logo">
+                    <img class="footer_logo_img" src="/vara_hotell/img/original/logga.png" alt="vara">
+                    <p class="footer_logo_text">HOTELL</p>
+                </div>
+                <p class="footer_tagline">Upplev komfort och kvalitet i hjärtat av Vara.</p>
+            </div>
+
+            <!-- Contactinfo -->
+            <div class="footer_section">
+                <h4>Kontakt</h4>
+                <p>Vara Hotell</p>
+                <p>534 91 Vara</p>
+                <p>0512-310 00</p>
+                <p>info@varahotell.se</p>
+            </div>
+
+            <!-- Links -->
+            <div class="footer_section">
+                <h4>Länkar</h4>
+                <a href="/vara_hotell/html/boka.html">Boka</a>
+                <a href="/vara_hotell/html/mat_och_dryck.html">Mat & Dryck</a>
+                <a href="/vara_hotell/html/om_oss.html">Om Oss</a>
+                <a href="#">Integritetspolicy</a>
+            </div>
+
+            <!-- Opening hours -->
+            <div class="footer_section">
+                <h4>Öppettider</h4>
+                <p>Mån-Fre: 07:00-22:00</p>
+                <p>Lör-Sön: 08:00-23:00</p>
+            </div>
+        </div>
+
+        <div class="footer_bottom">
+            &copy; 2025 Vara Hotell. Alla rättigheter förbehållna.
+        </div>
+    </footer>
+
+    <script>
+        //Hamburger Button
+        function hamburger_toggle() {
+            var items = document.getElementsByClassName("nav_link");
+
+            for (var i = 0; i < items.length; i++) {
+                if (items[i].style.display === "none" || items[i].style.display === "") {
+                    items[i].style.display = "flex";
+                } else {
+                    items[i].style.display = "none";
+                }
+            }
+        }
+
+        //Auto Show links
+        const body = document.body;
+        const resizeObserver = new ResizeObserver(entries => {
+            for (let entry of entries) {
+                const width = entry.contentRect.width;
+
+                if (width > 1150) {
+                    var items = document.getElementsByClassName("nav_link");
+                    for (var i = 0; i < items.length; i++) {
+                        items[i].style.display = "flex";
+                    }
+                }
+            }
+        });
+        resizeObserver.observe(body);
+    </script>
+
+</body>
+
+</html>
