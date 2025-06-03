@@ -1,0 +1,217 @@
+<!DOCTYPE html>
+<html lang="sv">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Boka</title>
+    <link rel="stylesheet" href="../css/style.css" />
+    <link rel="stylesheet" href="/vara_hotell/css/boka.css">
+
+    <link rel="icon" type="image/png" sizes="32x32" href="/vara_hotell/img/original/icon.png">
+
+    <meta name="description"
+        content="Boka ditt drömrum på Vara Hotell enkelt online. Välj mellan standardrum, sviter, familjerum eller våra populära paket - spa, gourmet eller romantik." />
+</head>
+
+<body>
+    <!-- Navbar -->
+    <header>
+        <nav>
+            <!-- lower nav -->
+            <div id="lower_nav">
+                <ul id="lower_nav_list" class="hidden">
+                    <!-- list items -->
+                    <li id=lower_nav_logo>
+                        <a href="/vara_hotell/index.html" class="logo_link">
+                            <img src="/vara_hotell/img/original/logga.png" alt="vara">
+                            <p id="hotell_text">HOTELL</p>
+                        </a>
+
+                        <button id="hamburger_toggle" onclick="hamburger_toggle()">&#9776;</button>
+                    </li>
+
+                    <li class="nav_link">
+                        <a class="lower_nav_a" href="/vara_hotell/html/boka.html">BOKA</a>
+                    </li>
+                    <li class="nav_link">
+                        <a class="lower_nav_a" href="/vara_hotell/html/upplevelser.html">UPPLEVELSER</a>
+                    </li>
+                    <li class="nav_link">
+                        <a class="lower_nav_a" href="/vara_hotell/html/mat_och_dryck.html">MAT OCH DRYCK</a>
+                    </li>
+                    <li class="nav_link">
+                        <a class="lower_nav_a" href="/vara_hotell/html/hitta.html">HITTA</a>
+                    </li>
+                    <li class="nav_link">
+                        <a class="lower_nav_a" href="/vara_hotell/html/om_oss.html">OM OSS</a>
+                    </li>
+                    <li class="nav_link">
+                        <a class="lower_nav_a" href="/vara_hotell/html/kontakta_oss.html">KONTAKTA</a>
+                    </li>
+                </ul>
+            </div>
+        </nav>
+    </header>
+
+    <!--Booking-->
+    <div class="booking_div">
+        <div class="booking_overlay">
+            <div class="booking_container">
+                <h2>Boka ditt rum</h2>
+                <form class="booking_form" onsubmit="handleBooking(event)">
+                    <div class="form_group">
+                        <label for="checkin">Incheckning</label>
+                        <input type="date" id="checkin" name="checkin" required>
+                    </div>
+                    <div class="form_group">
+                        <label for="checkout">Utcheckning</label>
+                        <input type="date" id="checkout" name="checkout" required>
+                    </div>
+                    <div class="form_group">
+                        <label for="guests">Gäster</label>
+                        <input type="number" id="guests" name="guests" min="1" value="2" required>
+                    </div>
+                    <div class="form_group">
+                        <label for="room">Rumstyp</label>
+                        <select id="room" name="room">
+                            <option>Dubbelrum</option>
+                            <option>Enkelrum</option>
+                            <option>Svit</option>
+                        </select>
+                    </div>
+
+                    <div class="form_group full_width">
+                        <p id="total_price">Total kostnad: -</p>
+                    </div>
+
+                    <button type="submit" class="booking_button">Boka</button>
+                    <p id="confirmation" class="confirmation_message"></p>
+                </form>
+            </div>
+        </div>
+    </div>
+
+    <!-- Footer -->
+
+    <footer class="footer">
+        <div class="footer_container">
+
+            <!-- Logo -->
+            <div class="footer_section">
+                <div class="footer_logo">
+                    <img class="footer_logo_img" src="/vara_hotell/img/original/logga.png" alt="vara">
+                    <p class="footer_logo_text">HOTELL</p>
+                </div>
+                <p class="footer_tagline">Upplev komfort och kvalitet i hjärtat av Vara.</p>
+            </div>
+
+            <!-- Contactinfo -->
+            <div class="footer_section">
+                <h4>Kontakt</h4>
+                <p>Vara Hotell</p>
+                <p>534 91 Vara</p>
+                <p>0512-310 00</p>
+                <p>info@varahotell.se</p>
+            </div>
+
+            <!-- Links -->
+            <div class="footer_section">
+                <h4>Länkar</h4>
+                <a href="/vara_hotell/html/boka.html">Boka</a>
+                <a href="/vara_hotell/html/mat_och_dryck.html">Mat & Dryck</a>
+                <a href="/vara_hotell/html/om_oss.html">Om Oss</a>
+                <a href="#">Integritetspolicy</a>
+            </div>
+
+            <!-- Opening hours -->
+            <div class="footer_section">
+                <h4>Öppettider</h4>
+                <p>Mån-Fre: 07:00-22:00</p>
+                <p>Lör-Sön: 08:00-23:00</p>
+            </div>
+        </div>
+
+        <div class="footer_bottom">
+            &copy; 2025 Vara Hotell. Alla rättigheter förbehållna.
+        </div>
+    </footer>
+
+    <!--Javascript-->
+
+    <script>
+        function calculateNights(checkin, checkout) {
+            const inDate = new Date(checkin);
+            const outDate = new Date(checkout);
+            const diff = (outDate - inDate) / (1000 * 60 * 60 * 24);
+            return diff > 0 ? diff : 0;
+        }
+
+        function handleBooking(event) {
+            event.preventDefault();
+
+            const checkin = document.getElementById("checkin").value;
+            const checkout = document.getElementById("checkout").value;
+            const nights = calculateNights(checkin, checkout);
+            const price = nights * 1000;
+
+            const totalText = document.getElementById("total_price");
+            totalText.textContent = `Total kostnad: ${price} kr (${nights} natt${nights === 1 ? "" : "er"})`;
+
+            const confirmation = document.getElementById("confirmation");
+            if (nights > 0) {
+                confirmation.textContent = "Tack! Din bokning har registrerats.";
+            } else {
+                confirmation.textContent = "Vänligen välj giltiga datum.";
+            }
+        }
+
+        document.getElementById("checkin").addEventListener("change", () => {
+            updatePrice();
+        });
+
+        document.getElementById("checkout").addEventListener("change", () => {
+            updatePrice();
+        });
+
+        function updatePrice() {
+            const checkin = document.getElementById("checkin").value;
+            const checkout = document.getElementById("checkout").value;
+            const nights = calculateNights(checkin, checkout);
+            const price = nights * 1000;
+            document.getElementById("total_price").textContent = nights > 0
+                ? `Total kostnad: ${price} kr (${nights} natt${nights === 1 ? "" : "er"})`
+                : `Total kostnad: -`;
+        }
+
+        //Hamburger Button
+        function hamburger_toggle() {
+            var items = document.getElementsByClassName("nav_link");
+
+            for (var i = 0; i < items.length; i++) {
+                if (items[i].style.display === "none" || items[i].style.display === "") {
+                    items[i].style.display = "flex";
+                } else {
+                    items[i].style.display = "none";
+                }
+            }
+        }
+
+        //Auto Show links
+        const body = document.body;
+        const resizeObserver = new ResizeObserver(entries => {
+            for (let entry of entries) {
+                const width = entry.contentRect.width;
+
+                if (width > 1150) {
+                    var items = document.getElementsByClassName("nav_link");
+                    for (var i = 0; i < items.length; i++) {
+                        items[i].style.display = "flex";
+                    }
+                }
+            }
+        });
+        resizeObserver.observe(body);
+    </script>
+
+</body>
