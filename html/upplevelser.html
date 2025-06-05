@@ -1,0 +1,169 @@
+<!DOCTYPE html>
+<html lang="sv">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Upplevelser</title>
+    <link rel="stylesheet" href="../css/style.css" />
+    <link rel="stylesheet" href="../css/upplevelser.css">
+
+    <link rel="icon" type="image/png" sizes="32x32" href="../img/original/icon.png">
+
+    <meta name="description"
+        content="Upplev Vara! Kultur på Konserthuset, vandringar i Jällby naturreservat, cykelturer över slätten och mycket mer – allt med Vara Hotell som bas." />
+</head>
+
+<body>
+    <!-- Navbar -->
+    <header>
+        <nav>
+            <!-- lower nav -->
+            <div id="lower_nav">
+                <ul id="lower_nav_list" class="hidden">
+                    <!-- list items -->
+                    <li id=lower_nav_logo>
+                        <a href="../index.html" class="logo_link">
+                            <img src="../img/original/logga.png" alt="vara">
+                            <p id="hotell_text">HOTELL</p>
+                        </a>
+
+                        <button id="hamburger_toggle" onclick="hamburger_toggle()">&#9776;</button>
+                    </li>
+
+                    <li class="nav_link">
+                        <a class="lower_nav_a" href="../html/boka.html">BOKA</a>
+                    </li>
+                    <li class="nav_link">
+                        <a class="lower_nav_a" href="../html/upplevelser.html">UPPLEVELSER</a>
+                    </li>
+                    <li class="nav_link">
+                        <a class="lower_nav_a" href="../html/mat_och_dryck.html">MAT OCH DRYCK</a>
+                    </li>
+                    <li class="nav_link">
+                        <a class="lower_nav_a" href="../html/hitta.html">HITTA</a>
+                    </li>
+                    <li class="nav_link">
+                        <a class="lower_nav_a" href="../html/om_oss.html">OM OSS</a>
+                    </li>
+                    <li class="nav_link">
+                        <a class="lower_nav_a" href="../html/kontakta_oss.html">KONTAKTA</a>
+                    </li>
+                </ul>
+            </div>
+        </nav>
+    </header>
+
+    <!-- Main -->
+    <main class="main_container">
+        <h1 class="page_title">Upplevelser i Vara</h1>
+        <div class="cards_container">
+
+            <div class="experience_card">
+                <img src="../img/original/vara_konserthus.avif" alt="Vara Konserthus">
+                <h2>Vara Konserthus</h2>
+                <p>Upplev konserter, teater och dans i världsklass på Vara Konserthus, bara några minuter från hotellet.
+                </p>
+            </div>
+
+            <div class="experience_card">
+                <img src="../img/original/Jällby.jpg" alt="Naturreservat">
+                <h2>Jällby Naturreservat</h2>
+                <p>Ta en promenad genom vacker natur, njut av fågelliv och stillhet i ett av områdets finaste
+                    naturreservat.</p>
+            </div>
+
+            <div class="experience_card">
+                <img src="../img/original/Cykla.jpg" alt="Cykel">
+                <h2>Cykla på slätten</h2>
+                <p>Hyr en cykel på hotellet och upptäck de böljande fälten och små byar som omger Vara.</p>
+            </div>
+
+        </div>
+    </main>
+
+    <!-- Footer -->
+    <footer class="footer">
+        <div class="footer_container">
+
+            <!-- Logo -->
+            <div class="footer_section">
+                <div class="footer_logo">
+                    <img class="footer_logo_img" src="../img/original/logga.png" alt="vara">
+                    <p class="footer_logo_text">HOTELL</p>
+                </div>
+                <p class="footer_tagline">Upplev komfort och kvalitet i hjärtat av Vara.</p>
+            </div>
+
+            <!-- Contactinfo -->
+            <div class="footer_section">
+                <h4>Kontakt</h4>
+                <p>Vara Hotell</p>
+                <p>534 91 Vara</p>
+                <p>0512-310 00</p>
+                <p>info@varahotell.se</p>
+            </div>
+
+            <!-- Links -->
+            <div class="footer_section">
+                <h4>Länkar</h4>
+                <a href="../html/boka.html">Boka</a>
+                <a href="../html/mat_och_dryck.html">Mat & Dryck</a>
+                <a href="../html/om_oss.html">Om Oss</a>
+                <a href="#">Integritetspolicy</a>
+            </div>
+
+            <!-- Opening hours -->
+            <div class="footer_section">
+                <h4>Öppettider</h4>
+                <p>Mån-Fre: 07:00-22:00</p>
+                <p>Lör-Sön: 08:00-23:00</p>
+            </div>
+        </div>
+
+        <div class="footer_bottom">
+            &copy; 2025 Vara Hotell. Alla rättigheter förbehållna.
+        </div>
+    </footer>
+
+    <script>
+        //Hamburger Button
+        function hamburger_toggle() {
+            var items = document.getElementsByClassName("nav_link");
+
+            for (var i = 0; i < items.length; i++) {
+                if (items[i].style.display === "none" || items[i].style.display === "") {
+                    items[i].style.display = "flex";
+                } else {
+                    items[i].style.display = "none";
+                }
+            }
+        }
+
+        //Auto Show links depending on size
+        const body = document.body;
+        let oldWid = body.width
+        const resizeObserver = new ResizeObserver(entries => {
+            for (let entry of entries) {
+                const width = entry.contentRect.width;
+
+                if (width > 1150) {
+                    var items = document.getElementsByClassName("nav_link");
+                    for (var i = 0; i < items.length; i++) {
+                        items[i].style.display = "flex";
+                    }
+                } else if ((oldWid > 1150) && (width <= 1150)) {
+                    var items = document.getElementsByClassName("nav_link");
+                    for (var i = 0; i < items.length; i++) {
+                        items[i].style.display = "none";
+                    }
+                }
+                oldWid = width;
+            }
+        });
+        resizeObserver.observe(body);
+    </script>
+
+</body>
+
+</html>

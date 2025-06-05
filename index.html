@@ -203,8 +203,9 @@
             }
         }
 
-        //Auto Show links
+        //Auto Show links depending on size
         const body = document.body;
+        let oldWid = body.width
         const resizeObserver = new ResizeObserver(entries => {
             for (let entry of entries) {
                 const width = entry.contentRect.width;
@@ -214,7 +215,13 @@
                     for (var i = 0; i < items.length; i++) {
                         items[i].style.display = "flex";
                     }
+                } else if ((oldWid > 1150) && (width <= 1150)) {
+                    var items = document.getElementsByClassName("nav_link");
+                    for (var i = 0; i < items.length; i++) {
+                        items[i].style.display = "none";
+                    }
                 }
+                oldWid = width;
             }
         });
         resizeObserver.observe(body);
